@@ -19,15 +19,6 @@ CREATE TABLE users (
     FOREIGN KEY (accountID) REFERENCES accounts(accountID)
 );
 
-CREATE TABLE details (
-    detailsID  INT (11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    detailsCourse  VARCHAR(255) NOT NULL,
-    detailsSection VARCHAR(255) NOT NULL,
-    detailsPlatform VARCHAR(255) NOT NULL,
-    detailsComment VARCHAR(255) NOT NULL,
-    usersID INT,
-    FOREIGN KEY (usersID) REFERENCES users(usersID)
-);
 
 CREATE TABLE available_appointment (
     availableID  INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -37,13 +28,15 @@ CREATE TABLE available_appointment (
 );
 
 CREATE TABLE scheduled_appointment (
+    course VARCHAR(255) NOT NULL,
+    cSection VARCHAR (255) NOT NULL,
+    platform VARCHAR (255) NOT NULL,
+    comment VARCHAR (255) NOT NULL,
     usersID INT,
-    detailsID INT,
     availableID INT,
     FOREIGN KEY (usersID) REFERENCES users(usersID),
-    FOREIGN KEY (detailsID) REFERENCES details(detailsID),
     FOREIGN KEY (availableID) REFERENCES available_appointment(availableID),
-    CONSTRAINT scheduledPK PRIMARY KEY (usersID, detailsID, availableID)
+    CONSTRAINT scheduledPK PRIMARY KEY (usersID, availableID)
 );
 
 -- insert data into the database
@@ -59,10 +52,6 @@ INSERT INTO users VALUES
 (4, 'instructor', 'ipassword', 'the instructor', 'instructor@gmail.com', 1);
 
 
-INSERT INTO details VALUES
-(1, 'INFO 3135', 'S10', 'Zoom', 'Final exam question', 1),
-(2, 'INFO 3135', 'S10', 'Big Blue Button', 'Grades question', 3);
-
 INSERT INTO available_appointment VALUES
 (1, '2020-12-01', '12:00pm', '12:15pm'),
 (2, '2020-12-01', '12:15pm', '12:30pm'),
@@ -74,5 +63,5 @@ INSERT INTO available_appointment VALUES
 (8, '2020-12-03', '3:45pm', '4:00pm');
 
 INSERT INTO scheduled_appointment VALUES
-(1, 1, 3),
-(3, 2, 7);
+('INFO 3135', 'S10', 'Zoom', 'Final exam question', 1, 3),
+('INFO 3135', 'S10', 'Big Blue Button', 'Grades question', 3, 7);
