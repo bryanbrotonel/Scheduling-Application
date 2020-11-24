@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div>
+            <table border="1">
+                <caption>All Scheduled Appointments</caption>
+                <tr>
+                    <td>Student Name</td><!-- comment -->
+                    <td>Student Email</td><!-- comment -->
+                    <td>Date</td><!-- comment -->
+                    <th>Start Time</th><!-- comment -->
+                    <th>Course</th><!-- comment -->
+                    <th>Section</th><!-- comment -->
+                    <th>Platform</th><!-- comment -->
+                    <th>Comments</th><!-- comment -->
+                </tr>
+                
+                <?php
+                    foreach($results5 as $scheduled_appointment){?>
+                <tr>
+                    <td><?php echo $scheduled_appointment['usersName']?></td>
+                    <td><a href="mailto:<?php echo $scheduled_appointment['usersEmail']?>"><?php echo $scheduled_appointment['usersEmail']?></a></td>
+                    <td><?php echo $scheduled_appointment['availableDate']?></td>
+                    <td><?php echo $scheduled_appointment['availableStart']?></td>
+                    <td><?php echo $scheduled_appointment['course']?></td>
+                    <td><?php echo $scheduled_appointment['cSection']?></td>
+                    <td><?php echo $scheduled_appointment['platform']?></td>
+                    <td><?php echo $scheduled_appointment['comment']?></td>
+                    <td><form method="post" action="deleteappointment.php">
+                            <input type="submit" value="Delete" name="delete">
+                            <input type="hidden" value=<?php echo $scheduled_appointment['comment']?> name="comment"> <!-- not really an error-->
+                            <input type="hidden" value=<?php echo $scheduled_appointment['availableStart']?> name="availableStart"> <!-- not really an error-->
+                            <!-- <input type="hidden" value="1" name="available"> -->
+                        </form>
+                    </td>
+                </tr>  
+                    <?php }
+                ?>
+            </table>
+</div>
+</body>
+</html>
