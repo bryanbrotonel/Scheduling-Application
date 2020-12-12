@@ -1,9 +1,3 @@
-<?php
-
-$login = true;
-$admin = false;
-
-?>
 <!DOCTYPE html>
 <html>
 <!-- the head section -->
@@ -22,18 +16,80 @@ $admin = false;
 <!-- the body section -->
 
 <body>
-  <header>
-    <?php
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <div class="d-flex flex-grow-1">
+        <span class="w-100 d-lg-none d-block">
+          <!-- hidden spacer to center brand on mobile --></span>
+        <a class="navbar-brand d-none d-lg-inline-block" href="#">
+          Scheduling App
+        </a>
+        <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
+          <!-- <img src="//placehold.it/40?text=LOGO" alt="logo"> -->
+          <span class="navbar-brand">Scheduling App</span>
+        </a>
+        <div class="w-100 text-right">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse flex-grow-1 text-right">
+        <div class="collapse navbar-collapse flex-grow-1 text-right">
+          <ul class="navbar-nav ml-auto flex-nowrap text-white">
+            <?php
 
-    if (!$login)
-      include 'nav/main.php';
-    else {
-      include ($admin) ? 'nav/admin.php' : 'nav/student.php';
-    }
+            $login = false;
+            $admin = false;
 
-    ?>
-  </header>
+            $curPageName = basename($_SERVER["REQUEST_URI"]);
 
-</body>
+            $urls_main = array(
+              'About' => '../about',
+              'Features' => '../features',
+            );
 
-</html>
+            $urls_student = array(
+              'Dashboard' => '../dashboard',
+              'Settings' => '../settings',
+            );
+
+            $urls_prof = array(
+              'Dashboard' => '../dashboard',
+              'Calendar' => '../calendar',
+              'Settings' => '../settings',
+            );
+
+            $urls = (!$login) ? $urls_main : ((!$admin) ? $urls_prof : $urls_student);
+
+            foreach ($urls as $name => $url) {
+              print '<li class="nav-item"><a class="nav-link m-2 menu-item' . (($curPageName === $url) ? ' active' : '') . '"href=' . $url . '>' . $name . '</a></li>';
+            }
+
+            if (!$login)
+              print '
+                      <li class="nav-item m-2">
+                        <form action="" method="post">
+                          <button class="btn btn-primary m-2 my-sm-0">Register</button>
+                        </form>
+                      </li>
+                      <li class="nav-item m-2">
+                        <form action="" method="post">
+                          <button class="btn btn-outline-primary text-white m-2 my-sm-0">Sign In</button>
+                        </form>
+                      </li>
+                    ';
+              else
+                print '
+                        <li class="nav-item m-2">
+                          <form action="" method="post">
+                            <button class="btn btn-danger text-white m-2 my-sm-0">Sign Out</button>
+                          </form>
+                        </li>
+                      ';
+            ?>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>

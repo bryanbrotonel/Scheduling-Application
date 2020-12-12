@@ -25,13 +25,13 @@ $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], 
         <div class="collapse navbar-collapse flex-grow-1 text-right">
             <ul class="navbar-nav ml-auto flex-nowrap">
                 <li class="nav-item">
-                    <a href="appointments" class="nav-link m-2 menu-item <?php if ($curPageName == 'appointments.php') echo 'active' ?>">Appointments</a>
+                    <a href="dashboard" class="nav-link m-2 menu-item <?php if ($curPageName == 'appointments') echo 'active' ?>">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a href="calendar" class="nav-link m-2 menu-item <?php if ($curPageName == 'calendar.php') echo 'active' ?>">Calendar</a>
+                    <a href="calendar" class="nav-link m-2 menu-item <?php if ($curPageName == 'calendar') echo 'active' ?>">Calendar</a>
                 </li>
                 <li class="nav-item">
-                    <a href="settings" class="nav-link m-2 menu-item <?php if ($curPageName == 'settings.php') echo 'active' ?>">Settings</a>
+                    <a href="settings" class="nav-link m-2 menu-item <?php if ($curPageName == 'settings') echo 'active' ?>">Settings</a>
                 </li>
                 <li class="nav-item m-2">
                     <form action="" method="post">

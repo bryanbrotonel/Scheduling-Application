@@ -25,10 +25,10 @@ $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], 
     <div class="collapse navbar-collapse flex-grow-1 text-right">
       <ul class="navbar-nav ml-auto flex-nowrap">
         <li class="nav-item">
-          <a href="about" class="nav-link m-2 menu-item <?php if ($curPageName == 'about.php') echo 'active' ?>">About</a>
+          <a href="about" class="nav-link m-2 menu-item <?php if ($curPageName == 'about') echo 'active' ?>">About</a>
         </li>
         <li class="nav-item">
-          <a href="features" class="nav-link m-2 menu-item <?php if ($curPageName == 'features.php') echo 'active' ?>">Features</a>
+          <a href="features" class="nav-link m-2 menu-item <?php if ($curPageName == 'features') echo 'active' ?>">Features</a>
         </li>                    
         <li class="nav-item m-2">
           <a href="register">
