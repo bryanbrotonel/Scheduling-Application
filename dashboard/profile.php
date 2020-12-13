@@ -1,8 +1,10 @@
 <?php
 session_start();
-include_once("config.php");
+include_once("../connection/config.php");
 $con=config::connect();
 error_reporting(E_ERROR | E_WARNING | E_PARSE); // hides warning when student doesn't have a scheduled appointment
+
+include '../view/header.php';
 
 $results=fetchRecords($con);
 function fetchRecords($con){
@@ -52,7 +54,7 @@ $_SESSION['availableID'] = $results2['availableID']; // availableID of scheduled
 echo "<h1>Profile</h1>";
 echo "Welcome " . $results['usersName'] . "&nbsp;/&nbsp;" . $_SESSION['usersUsername'] . "<br>";
 echo "<br>";
-echo "<a href='logout.php'>Logout</a> &nbsp;";
+echo "<a href='../process/logout.php'>Logout</a> &nbsp;";
 echo "<a href='updateuser.php'>Update User</a> &nbsp;";
 
 if ($results['accountID'] == 2){ // student view
@@ -78,4 +80,6 @@ if ($results['accountID'] == 2){ // student view
 } else {// instructor view
     include("instructortable.html");
     }
+include '../view/footer.php';
 ?>
+

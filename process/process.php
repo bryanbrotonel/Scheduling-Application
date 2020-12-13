@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("config.php");
+include_once("../connection/config.php");
 
 if(isset($_POST['signup'])){
     $con = config::connect();
@@ -40,7 +40,7 @@ if(isset($_POST['login'])){
     
    if(checkLogin($con, $username, $password)){
        $_SESSION['usersUsername'] = $username;
-       header("Location: profile.php");
+       header("Location: ../dashboard/profile.php");
    } else {
        echo "Username/Password are incorrect.";
    }
