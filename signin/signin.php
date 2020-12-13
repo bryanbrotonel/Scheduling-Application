@@ -1,6 +1,8 @@
+<?php
+include '../view/header.php';
+$action = 'signin';
+?>
 
-<?phpinclude '../view/header.php'; ?>
-<?php $action = 'signin';?>
 <div id="main">
     <h1 class="top">Sign In</h1>
 </div>

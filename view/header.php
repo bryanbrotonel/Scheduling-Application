@@ -21,7 +21,7 @@
       <div class="d-flex flex-grow-1">
         <span class="w-100 d-lg-none d-block">
           <!-- hidden spacer to center brand on mobile --></span>
-        <a class="navbar-brand d-none d-lg-inline-block" href="http://localhost/info3135/test/">
+        <a class="navbar-brand d-none d-lg-inline-block" href="#">
           Scheduling App
         </a>
         <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
