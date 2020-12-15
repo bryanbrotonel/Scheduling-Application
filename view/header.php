@@ -29,7 +29,7 @@ session_start();
         <div class="d-flex flex-grow-1">
           <span class="w-100 d-lg-none d-block">
             <!-- hidden spacer to center brand on mobile --></span>
-          <a class="navbar-brand d-none d-lg-inline-block" href="http://localhost/info3135/test/dashboard">
+          <a class="navbar-brand d-none d-lg-inline-block" href="#">
             Scheduling App
           </a>
           <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
@@ -73,33 +73,27 @@ session_start();
 
             $curPageName = basename($_SERVER["REQUEST_URI"]);
 
-            $url = $_SERVER["REQUEST_URI"];
+            $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-            $parts      = parse_url($url);
-
-            $path       = pathinfo($parts['path']);
-
-            $segments   = explode('/', trim($path['dirname'], '/'));
-
-            $crumb_path = '';
-
-            foreach ($segments as $segment)
-              $crumb_path .= '/' . $segment;
+            // foreach ($segments as $segment)
+            //   $crumb_path .= '/' . $segment;
 
             $urls_main = array(
-              'About' => $crumb_path . '/about',
-              'Features' => $crumb_path . '/features',
+              'About' => '#',
+              'Features' => '#',
             );
 
+            echo $current_url;
+
             $urls_student = array(
-              'Dashboard' => $crumb_path . '/dashboard',
-              'Settings' => $crumb_path . '/settings',
+              'Dashboard' => '../dashboard',
+              'Settings' => '../settings',
             );
 
             $urls_prof = array(
-              'Dashboard' => $crumb_path . '/dashboard',
-              'Calendar' => $crumb_path . '/calendar',
-              'Settings' => $crumb_path . '/settings',
+              'Dashboard' => '../dashboard',
+              'Calendar' => '../calendar',
+              'Settings' => '../settings',
             );
 
             $urls = (!$login) ? $urls_main : ((!$admin) ? $urls_prof : $urls_student);
@@ -111,12 +105,12 @@ session_start();
             if (!$login)
               print '
                       <li class="nav-item m-2">
-                        <form action="' . $crumb_path . '/register" method="post">
+                        <form action="./register" method="post">
                           <button class="btn btn-primary text-white m-2 my-sm-0">Register</button>
                         </form>
                       </li>
                       <li class="nav-item m-2">
-                        <form action="' . $crumb_path . '/signin" method="post">
+                        <form action="./signin" method="post">
                           <button class="btn btn-outline-primary text-white m-2 my-sm-0">Sign In</button>
                         </form>
                       </li>
@@ -124,7 +118,7 @@ session_start();
             else
               print '
                         <li class="nav-item m-2">
-                          <form action="' . $crumb_path . '/signout" method="post">
+                          <form action="../signout" method="post">
                             <button class="btn btn-danger text-white m-2 my-sm-0">Sign Out</button>
                           </form>
                         </li>
