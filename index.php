@@ -9,12 +9,8 @@ function fetchRecords($con){
     return $query->fetchAll();
 }
 ?>
-<?php
-$login = false;
-include 'view/header.php';
-?>
-        <a href="index.php"><img src="kpu-logo-1.png" alt="logo" style="width:50px;height:50px;"></a>
-        <div><h1>HOME</h1></div>
+<?php include 'view/header.php'; ?>
+        <div><h1>Home</h1></div>
         <div>
             <table border="1">
                 <tr>

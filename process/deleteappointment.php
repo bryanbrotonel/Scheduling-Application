@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("config.php");
+include_once("../connection/config.php");
 $con = config::connect();
 // when admin deletes appointment
 if (isset($_POST['delete'])){
@@ -11,7 +11,7 @@ if (isset($_POST['delete'])){
     $query->bindParam(":comment", $comment);
     $query->bindParam(":availableStart", $availableStart);
     $query->execute();
-    header("location: profile.php");
+    header("location: ../dashboard");
 }
 // when student deletes appointment
 $usersID = $_SESSION['usersID'];
@@ -20,4 +20,4 @@ $query = $con->prepare("DELETE FROM scheduled_appointment WHERE usersID=:usersID
                         UPDATE available_appointment SET available='0' WHERE availableID='{$_SESSION['availableID']}';");
 $query->bindParam(":usersID", $usersID);
 $query->execute();
-header("location: profile.php");
+header("location: ../dashboard");

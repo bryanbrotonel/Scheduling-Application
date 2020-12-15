@@ -1,7 +1,9 @@
 <?php include '../view/header.php'; ?>
+
 <div id="main">
     <h1 class="top">Register</h1>
 </div>
+
 <div>
     <form method="post" action="../process/process.php">
         <input type="text" name="username" placeholder="Username..." required><br>

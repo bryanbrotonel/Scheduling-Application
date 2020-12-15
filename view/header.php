@@ -1,3 +1,5 @@
+<?php error_reporting(E_ERROR | E_WARNING | E_PARSE);
+session_start(); ?>
 <!DOCTYPE html>
 <html>
 <!-- the head section -->
@@ -18,7 +20,25 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
+
+      <?php if ($_SESSION['loggedin'] === 1) { ?>
       <div class="d-flex flex-grow-1">
+        <span class="w-100 d-lg-none d-block">
+          <!-- hidden spacer to center brand on mobile --></span>
+        <a class="navbar-brand d-none d-lg-inline-block" href="http://localhost/info3135/test/dashboard">
+          Scheduling App
+        </a>
+        <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
+          <!-- <img src="//placehold.it/40?text=LOGO" alt="logo"> -->
+          <span class="navbar-brand">Scheduling App</span>
+        </a>
+        <div class="w-100 text-right">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div> <?php }  else { ?>
+        <div class="d-flex flex-grow-1">
         <span class="w-100 d-lg-none d-block">
           <!-- hidden spacer to center brand on mobile --></span>
         <a class="navbar-brand d-none d-lg-inline-block" href="http://localhost/info3135/test/">
@@ -33,15 +53,19 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-      </div>
+        </div> <?php } ?>
+
       <div class="collapse navbar-collapse flex-grow-1 text-right">
         <div class="collapse navbar-collapse flex-grow-1 text-right">
           <ul class="navbar-nav ml-auto flex-nowrap text-white">
             <?php
-
-            $login = false;
-            $admin = false;
-
+            error_reporting(E_ERROR | E_WARNING | E_PARSE);
+            
+            if (!isset($_SESSION['loggedin'])) $login = false;
+            if ($_SESSION['loggedin'] == 1) $login = true;
+            if ($_SESSION['accountType'] == 1) $admin = false;
+            if ($_SESSION['accountType'] == 2) $admin = true;
+ 
             $curPageName = basename($_SERVER["REQUEST_URI"]);
 
             $urls_main = array(
@@ -69,12 +93,12 @@
             if (!$login)
               print '
                       <li class="nav-item m-2">
-                        <form action="register" method="post">
+                        <form action="http://localhost/info3135/test/register" method="post">
                           <button class="btn btn-primary m-2 my-sm-0">Register</button>
                         </form>
                       </li>
                       <li class="nav-item m-2">
-                        <form action="signin" method="post">
+                        <form action="http://localhost/info3135/test/signin" method="post">
                           <button class="btn btn-outline-primary text-white m-2 my-sm-0">Sign In</button>
                         </form>
                       </li>
@@ -82,7 +106,7 @@
               else
                 print '
                         <li class="nav-item m-2">
-                          <form action="" method="post">
+                          <form action="../signout" method="post">
                             <button class="btn btn-danger text-white m-2 my-sm-0">Sign Out</button>
                           </form>
                         </li>

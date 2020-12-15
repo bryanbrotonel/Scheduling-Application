@@ -30,7 +30,7 @@
                         <td><?php echo $scheduled_appointment['cSection']?></td>
                         <td><?php echo $scheduled_appointment['platform']?></td>
                         <td><?php echo $scheduled_appointment['comment']?></td>
-                        <td><form method="post" action="deleteappointment.php">
+                        <td><form method="post" action="../process/deleteappointment.php">
                                 <input type="submit" value="Delete" name="delete">
                                 <input type="hidden" value="<?php echo $scheduled_appointment['comment']?>" name="comment">
                                 <input type="hidden" value="<?php echo $scheduled_appointment['availableStart']?>" name="availableStart">
