@@ -1,5 +1,7 @@
-<?php include '../view/header.php'; ?>
 <div id="main">
-    <h1 class="top">Prof Dashboard</h1>
+    <h1 class="top">Instructor Dashboard</h1>
+	Welcome <?php echo $results['usersName'] ?> &nbsp; / &nbsp;  <?php echo $_SESSION['usersUsername'] ?> <br>
+	<?php
+    include("instructortable.html");
+    ?>
 </div>
-<?php include '../view/footer.php'; ?>

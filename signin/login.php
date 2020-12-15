@@ -14,7 +14,7 @@
         </div>
         <br>
         <div>
-            <form method="post" action="process.php">
+            <form method="post" action="../process.php">
                 <input type="text" name="username" placeholder="Username..." required>
                 <input type="password" name="password" placeholder="Password..." required>
                 <input type="submit" value="Login" name="login">

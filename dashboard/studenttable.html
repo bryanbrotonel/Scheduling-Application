@@ -23,7 +23,7 @@
                         <td><?php echo $available_appointment['availableDate']?></td>
                         <td><?php echo $available_appointment['availableStart']?></td>
                         <td><?php echo $available_appointment['availableEnd']?></td>
-                        <td><form method="post" action="appointment.php">
+                        <td><form method="post" action="../appointment/appointment.php">
                                 <input type="submit" value="Select" name="selected">
                                 <input type="hidden" value=<?php echo $available_appointment['availableID']?> name="availableID">
                             </form>

@@ -1,8 +1,9 @@
 <?php
-session_start();
-include_once("config.php");
+include_once("../connection/config.php");
 $con=config::connect();
 error_reporting(E_ERROR | E_WARNING | E_PARSE); // hides warning when student doesn't have a scheduled appointment
+
+include '../view/header.php';
 
 $results=fetchRecords($con);
 function fetchRecords($con){
@@ -47,35 +48,40 @@ function fetchRecords5($con){
 
 $_SESSION['usersID'] = $results['usersID']; // current logged in user id
 $_SESSION['availableID'] = $results2['availableID']; // availableID of scheduled appointment if set
+?>
 
-// all users view
-echo "<h1>Profile</h1>";
-echo "Welcome " . $results['usersName'] . "&nbsp;/&nbsp;" . $_SESSION['usersUsername'] . "<br>";
-echo "<br>";
-echo "<a href='logout.php'>Logout</a> &nbsp;";
-echo "<a href='updateuser.php'>Update User</a> &nbsp;";
-
-if ($results['accountID'] == 2){ // student view
-    echo "<a href='deleteuser.php'>Delete User</a>";
-    echo "<br><br>";
-
-        if (isset($_SESSION['availableID'])){
-            echo "<a href='updateappointment.php'>Update Appointment</a> &nbsp;";
-            echo "<a href='deleteappointment.php'>Delete Appointment</a>";
-            echo "<br><br>";
-            echo "Your scheduled appointments:<br>";
-            echo "&nbsp;&nbsp;&nbsp;";
-            echo "Appointment scheduled for: ";
-            echo $results4['availableDate'] . " " . $results4['availableStart'] . " " . $results4['availableEnd'];
-            echo "<br>&nbsp;&nbsp;&nbsp;";
-            echo "Appointment details: ";
-            echo $results2['course'] . " " . $results2['cSection'] . " " . $results2['platform'] . " " . $results2['comment'];
-        } else {
-            echo "You do not have a scheduled appointment.<br><br>";
-            include("studenttable.html");
+<?php if ($results['accountID'] == 2){ ?> <!-- student view -->
+	<h1>Student Dashboard</h1>
+	Welcome <?php echo $results['usersName'] ?> &nbsp; / &nbsp;  <?php echo $_SESSION['usersUsername'] ?> <br>
+	<br>
+	<a href='../update/updateuser.php'>Update User</a> &nbsp;
+    <a href='../process/deleteuser.php' onclick="return confirm('Are you sure?')">Delete User</a>
+    <br><br>
+	<?php
+        if (isset($_SESSION['availableID'])) { ?>
+            <a href='../update/updateappointment.php'>Update Appointment</a> &nbsp;
+            <a href='../process/deleteappointment.php' onclick="return confirm('Are you sure?')">Delete Appointment</a>
+            <br><br>
+            Your scheduled appointments:<br>
+            &nbsp;&nbsp;&nbsp;
+            Appointment scheduled for: 
+            <?php echo $results4['availableDate'] . " " . $results4['availableStart'] . " " . $results4['availableEnd']; ?>
+            <br>&nbsp;&nbsp;&nbsp;
+            Appointment details: 
+            <?php echo $results2['course'] . " " . $results2['cSection'] . " " . $results2['platform'] . " " . $results2['comment']; 
+        } else { ?>
+            You do not have a scheduled appointment.<br><br>
+            <?php include("studenttable.html");
             }
         echo "<br><br>"; 
-} else {// instructor view
+} else {// instructor view ?>
+	<h1>Instructor Dashboard</h1>
+	Welcome <?php echo $results['usersName'] ?> &nbsp; / &nbsp;  <?php echo $_SESSION['usersUsername'] ?> <br>
+	<br>
+	<a href='../update/updateuser.php'>Update User</a> &nbsp;
+	<?php
     include("instructortable.html");
     }
+include '../view/footer.php';
 ?>
+

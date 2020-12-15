@@ -1,22 +1,19 @@
 <?php
 session_start();
-$usersID = $_SESSION['usersID'];
-$availableID = $_POST['availableID'];
-$_SESSION['availableID'] = $availableID;
-include_once("config.php");
+include_once("../connection/config.php");
+include '../view/header.php';
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Appointment</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Update Appointment</title>
     </head>
     <body>
-        <div><h1>Schedule an Appointment</h1></div>
         <div>
-            <form method="post" action="process.php">
+            <h1>Update Appointment</h1>
+        </div>
+        <div>
+            <form method="post" action="../process/process.php">
                 <input type="text" name="course" placeholder="Course..." required><br><br>
                 <input type="text" name="cSection" placeholder="Section..." required><br><br>
                 <select name="platform" placeholder="Platform..." required>
@@ -25,7 +22,9 @@ include_once("config.php");
                     <option value="MS Teams">MS Teams</option>
                 </select><br><br>
                 <textarea name="comment" placeholder="Comment..." required></textarea><br>
-                <input type="submit" value="Schedule" name="schedule">
+                <input type="hidden" value=$_SESSION['usersID'] name="usersID">
+                <input type="hidden" value=$_SESSION['availableID'] name="availableID">
+                <input type="submit" value="Update Appointment" name="updateSchedule">
             </form>
         </div>
     </body>

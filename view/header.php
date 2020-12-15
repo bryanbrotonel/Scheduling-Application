@@ -1,3 +1,9 @@
+<?php
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
 <!-- the head section -->
@@ -18,71 +24,107 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <div class="d-flex flex-grow-1">
-        <span class="w-100 d-lg-none d-block">
-          <!-- hidden spacer to center brand on mobile --></span>
-        <a class="navbar-brand d-none d-lg-inline-block" href="#">
-          Scheduling App
-        </a>
-        <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
-          <!-- <img src="//placehold.it/40?text=LOGO" alt="logo"> -->
-          <span class="navbar-brand">Scheduling App</span>
-        </a>
-        <div class="w-100 text-right">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
+
+      <?php if ($_SESSION['loggedin'] === 1) { ?>
+        <div class="d-flex flex-grow-1">
+          <span class="w-100 d-lg-none d-block">
+            <!-- hidden spacer to center brand on mobile --></span>
+          <a class="navbar-brand d-none d-lg-inline-block" href="http://localhost/info3135/test/dashboard">
+            Scheduling App
+          </a>
+          <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
+            <!-- <img src="//placehold.it/40?text=LOGO" alt="logo"> -->
+            <span class="navbar-brand">Scheduling App</span>
+          </a>
+          <div class="w-100 text-right">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div> <?php } else { ?>
+        <div class="d-flex flex-grow-1">
+          <span class="w-100 d-lg-none d-block">
+            <!-- hidden spacer to center brand on mobile --></span>
+          <a class="navbar-brand d-none d-lg-inline-block" href="http://localhost/info3135/test/">
+            Scheduling App
+          </a>
+          <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
+            <!-- <img src="//placehold.it/40?text=LOGO" alt="logo"> -->
+            <span class="navbar-brand">Scheduling App</span>
+          </a>
+          <div class="w-100 text-right">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div> <?php } ?>
+
       <div class="collapse navbar-collapse flex-grow-1 text-right">
         <div class="collapse navbar-collapse flex-grow-1 text-right">
           <ul class="navbar-nav ml-auto flex-nowrap text-white">
             <?php
 
-            $login = false;
-            $admin = false;
+            error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+            if (!isset($_SESSION['loggedin'])) $login = false;
+            if ($_SESSION['loggedin'] == 1) $login = true;
+            if ($_SESSION['accountType'] == 1) $admin = false;
+            if ($_SESSION['accountType'] == 2) $admin = true;
 
             $curPageName = basename($_SERVER["REQUEST_URI"]);
 
+            $url = $_SERVER["REQUEST_URI"];
+
+            $parts      = parse_url($url);
+
+            $path       = pathinfo($parts['path']);
+
+            $segments   = explode('/', trim($path['dirname'], '/'));
+
+            $crumb_path = '';
+
+            foreach ($segments as $segment)
+              $crumb_path .= '/' . $segment;
+
             $urls_main = array(
-              'About' => '../about',
-              'Features' => '../features',
+              'About' => $crumb_path . '/about',
+              'Features' => $crumb_path . '/features',
             );
 
             $urls_student = array(
-              'Dashboard' => '../dashboard',
-              'Settings' => '../settings',
+              'Dashboard' => $crumb_path . '/dashboard',
+              'Settings' => $crumb_path . '/settings',
             );
 
             $urls_prof = array(
-              'Dashboard' => '../dashboard',
-              'Calendar' => '../calendar',
-              'Settings' => '../settings',
+              'Dashboard' => $crumb_path . '/dashboard',
+              'Calendar' => $crumb_path . '/calendar',
+              'Settings' => $crumb_path . '/settings',
             );
 
             $urls = (!$login) ? $urls_main : ((!$admin) ? $urls_prof : $urls_student);
 
             foreach ($urls as $name => $url) {
-              print '<li class="nav-item"><a class="nav-link m-2 menu-item' . (($curPageName === $url) ? ' active' : '') . '"href=' . $url . '>' . $name . '</a></li>';
+              print '<li class="nav-item"><a class="nav-link m-2 menu-item' . ((strcasecmp($curPageName, $name) == 0) ? ' active' : '') . '"href=' . $url . '>' . $name . '</a></li>';
             }
 
             if (!$login)
               print '
                       <li class="nav-item m-2">
-                        <form action="" method="post">
-                          <button class="btn btn-primary m-2 my-sm-0">Register</button>
+                        <form action="' . $crumb_path . '/register" method="post">
+                          <button class="btn btn-primary text-white m-2 my-sm-0">Register</button>
                         </form>
                       </li>
                       <li class="nav-item m-2">
-                        <form action="" method="post">
+                        <form action="' . $crumb_path . '/signin" method="post">
                           <button class="btn btn-outline-primary text-white m-2 my-sm-0">Sign In</button>
                         </form>
                       </li>
                     ';
-              else
-                print '
+            else
+              print '
                         <li class="nav-item m-2">
-                          <form action="" method="post">
+                          <form action="' . $crumb_path . '/signout" method="post">
                             <button class="btn btn-danger text-white m-2 my-sm-0">Sign Out</button>
                           </form>
                         </li>
