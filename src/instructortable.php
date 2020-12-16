@@ -23,7 +23,7 @@
                 <td><?php echo $scheduled_appointment['platform'] ?></td>
                 <td><?php echo $scheduled_appointment['comment'] ?></td>
                 <td>
-                    <form method="post" action="../process/deleteappointment.php">
+                    <form method="post" action="process/deleteappointment.php" onsubmit="return confirm('Are you sure?');">
                         <input type="submit" value="Delete" name="delete">
                         <input type="hidden" value="<?php echo $scheduled_appointment['comment'] ?>" name="comment">
                         <input type="hidden" value="<?php echo $scheduled_appointment['availableStart'] ?>" name="availableStart">

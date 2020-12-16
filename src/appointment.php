@@ -2,7 +2,7 @@
     <h1>Schedule an Appointment</h1>
 </div>
 <div>
-    <form method="post" action="../process/process.php">
+    <form method="post" action="process/process.php">
         <input type="text" name="course" placeholder="Course..." required><br><br>
         <input type="text" name="cSection" placeholder="Section..." required><br><br>
         <select name="platform" placeholder="Platform..." required>

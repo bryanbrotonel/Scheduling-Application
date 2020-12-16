@@ -6,7 +6,7 @@
     <?php
     if (isset($_SESSION['availableID'])) { ?>
         <a href='../update/updateappointment.php'>Update Appointment</a> &nbsp;
-        <a href='../process/deleteappointment.php' onclick="return confirm('Are you sure?')">Delete Appointment</a>
+        <a href='process/deleteappointment.php' onclick="return confirm('Are you sure?')">Delete Appointment</a>
         <br><br>
         Your scheduled appointments:<br>
         &nbsp;&nbsp;&nbsp;
