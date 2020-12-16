@@ -16,15 +16,10 @@
                 <td><?php echo $available_appointment['availableStart'] ?></td>
                 <td><?php echo $available_appointment['availableEnd'] ?></td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter<?php echo $available_appointment['availableID'] ?>">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#scheduleAppointment-<?php echo $available_appointment['availableID'] ?>">
                         Select
                     </button>
-                    <!-- <form method="post" action="../appointment.php">
-                        <input type="submit" value="Select" name="selected">
-                        <input type="hidden" value=<?php echo $available_appointment['availableID'] ?> name="availableID">
-                    </form> -->
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter<?php echo $available_appointment['availableID'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade" id="scheduleAppointment-<?php echo $available_appointment['availableID'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -35,7 +30,8 @@
                                 </div>
                                 <div class="modal-body">
                                     <div>
-                                        <form method="post" action="/process/process.php">
+                                        <form method="post" action="process/scheduleappointment.php">
+                                            <input type="hidden" value="<?php echo $available_appointment['availableID'] ?>" name="availableID">
                                             <input type="text" name="course" placeholder="Course..." required><br><br>
                                             <input type="text" name="cSection" placeholder="Section..." required><br><br>
                                             <select name="platform" placeholder="Platform..." required>
