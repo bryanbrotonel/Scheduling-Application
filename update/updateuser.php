@@ -2,7 +2,7 @@
 session_start();
 $username = $_SESSION['usersUsername'];
 include_once("../connection/config.php");
-include '../view/header.php';
+include 'header.php';
 ?>
 
 <!DOCTYPE html>

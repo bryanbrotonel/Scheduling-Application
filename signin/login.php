@@ -10,7 +10,7 @@
         <div><h1>Login</h1></div>
         <div>
             <a href="index.php">Home</a>
-            <a href="signup.php">Sign Up</a>
+            <!-- <a href="signup.php">Sign Up</a> -->
         </div>
         <br>
         <div>

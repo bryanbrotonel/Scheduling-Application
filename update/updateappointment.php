@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once("../connection/config.php");
-include '../view/header.php';
+include 'header.php';
 ?>
 <!DOCTYPE html>
 <html>

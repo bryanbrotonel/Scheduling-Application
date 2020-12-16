@@ -26,7 +26,7 @@ if(isset($_POST['signup'])){
 		$_SESSION['loggedin'] = 1;
         $_SESSION['usersUsername'] = $username;
         $_SESSION['usersName'] = $name;
-        header("Location: ../dashboard");
+        header("Location: ../dashboard.php");
     }
 }
 
@@ -42,7 +42,7 @@ if(isset($_POST['login'])){
    if(checkLogin($con, $username, $password)){
 	   $_SESSION['loggedin'] = 1;
        $_SESSION['usersUsername'] = $username;
-       header("Location: ../dashboard");
+       header("Location: ../dashboard.php");
    } else {
        echo "Username/Password are incorrect.";
    }
@@ -77,7 +77,7 @@ if(isset($_POST['update'])){
     if(updateDetails($con, $usersID, $username, $password, $name, $email)){
         $_SESSION['usersUsername'] = $username;
         $_SESSION['usersName'] = $name;
-        header("Location: ../dashboard");
+        header("Location: ../dashboard.php");
     }
 }
 
@@ -93,7 +93,7 @@ if(isset($_POST['schedule'])){
     $selectedAvailableID = $_SESSION['availableID'];
     
     scheduleappointment($con, $course, $cSection, $platform, $comment, $currentUsersID, $selectedAvailableID);
-    header("Location: ../dashboard");  
+    header("Location: ../dashboard.php");  
 }
 
 if(isset($_POST['updateSchedule'])){
@@ -115,7 +115,7 @@ if(isset($_POST['updateSchedule'])){
     $availableID = $result['availableID'];
     
     updateSchedule($con, $course, $cSection, $platform, $comment, $currentUserID, $currentAvailableID);
-    header("Location: ../dashboard"); 
+    header("Location: ../dashboard.php"); 
 }
 
 function insertDetails($con, $username, $password, $name, $email, $type){
