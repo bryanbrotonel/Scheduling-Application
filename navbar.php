@@ -1,13 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-4">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="index.php">
       <?php include 'logo.php' ?>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExample07">
+    <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <?php
 
@@ -21,8 +21,8 @@
         $curPageName = basename($_SERVER["REQUEST_URI"]);
 
         $urls_main = array(
-          'About' => 'about.php',
-          'Features' => 'features.php',
+          'About' => '#about',
+          'Features' => '#features',
         );
 
         $urls_student = array(

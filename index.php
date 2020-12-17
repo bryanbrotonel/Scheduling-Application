@@ -9,9 +9,9 @@ function fetchRecords($con)
     $query->execute();
     return $query->fetchAll();
 }
-?>
 
-<body>
-    <?php 
-    include 'header.php';
-    include 'footer.php'; ?>
+include 'header.php';
+include 'src/home.php';
+include 'footer.php';
+
+?>

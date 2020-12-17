@@ -44,7 +44,8 @@ if(isset($_POST['login'])){
        $_SESSION['usersUsername'] = $username;
        header("Location: ../dashboard.php");
    } else {
-       echo "Username/Password are incorrect.";
+        header("Location: ../signin.php");
+        $_SESSION['failedLogin'] = true;
    }
 }
 

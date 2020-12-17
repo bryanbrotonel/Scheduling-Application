@@ -6,5 +6,6 @@
             <input type="password" name="password" class="form-control" placeholder="Password" required>
             <input class="w-100 btn btn-lg btn-primary" type="submit" value="Signin" name="login">
         </form>
+        <p class="text-danger text-center pt-3"> <?php if ($_SESSION['failedLogin']) echo 'Incorrect Sign In' ?>.</p>
     </main>
 </div>

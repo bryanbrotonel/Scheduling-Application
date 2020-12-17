@@ -21,7 +21,7 @@
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#scheduleAppointment-<?php echo $available_appointment['availableID'] ?>">
                                 Select
                             </button>
-                            <div class="modal fade" id="scheduleAppointment-<?php echo $available_appointment['availableID'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="scheduleAppointment-<?php echo $available_appointment['availableID'] ?>" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
