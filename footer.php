@@ -1,15 +1,7 @@
-<style>
-  .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: #f5f5f5;
-    padding: 20px 0;
-  }
-</style>
+</main>
 
 <footer class="footer">
-  <div class="container">
+  <div class="d-flex h-100 align-items-center justify-content-center">
     <div class="text-center">
       <h5> <?php include 'logo.php' ?></h5>
       <p>Scheduling application for students</p>

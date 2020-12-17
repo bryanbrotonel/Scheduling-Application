@@ -11,7 +11,7 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col-lg-6">
-                <div class="bg-light rounded border p-5">
+                <div class="bg-light rounded border p-5 mb-5">
                     <?php include isset($_SESSION['availableID']) ? "studentappointment.php" : "studenttable.php"; ?>
                 </div>
             </div>

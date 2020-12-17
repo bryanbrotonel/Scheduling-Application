@@ -50,7 +50,6 @@ $_SESSION['availableID'] = $results2['availableID']; // availableID of scheduled
 $_SESSION['accountType'] = $results['accountID'];
 include 'header.php';
 
-
 if ($_SESSION['accountType'] == 2) {
     include('src/dashboard_student.php');
 }
