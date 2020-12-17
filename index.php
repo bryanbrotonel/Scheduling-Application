@@ -1,7 +1,17 @@
-<?php include 'view/header.php'; ?>
-<div id="main">
-  <h1 class="top">Menu</h1>
-  <p><a href="product_manager">Product Manager</a></p>
-  <p><a href="product_catalog">Product Catalog</a></p>
-</div>
-<?php include 'view/footer.php'; ?>
+<?php
+include_once("connection/config.php");
+$con = config::connect();
+
+$results = fetchRecords($con);
+function fetchRecords($con)
+{
+    $query = $con->prepare("SELECT * FROM users;");
+    $query->execute();
+    return $query->fetchAll();
+}
+
+include 'header.php';
+include 'src/home.php';
+include 'footer.php';
+
+?>

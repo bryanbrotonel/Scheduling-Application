@@ -2,7 +2,7 @@
 
 ## About
 
-A basic scheduling app aimed towards student and professor meetings.
+A basic scheduling app aimed towards student and professor office hours.
 
 ## Contributing
 
