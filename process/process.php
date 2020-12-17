@@ -81,42 +81,46 @@ if(isset($_POST['update'])){
     }
 }
 
-if(isset($_POST['schedule'])){
-    $con = config::connect();
-    
-    $course = $_POST['course'];
-    $cSection = $_POST['cSection'];
-    $platform = $_POST['platform'];
-    $comment = $_POST['comment'];
-    
-    $currentUsersID = $_SESSION['usersID'];
-    $selectedAvailableID = $_SESSION['availableID'];
-    
-    scheduleappointment($con, $course, $cSection, $platform, $comment, $currentUsersID, $selectedAvailableID);
-    header("Location: ../dashboard.php");  
-}
+// Moved to scheduleappointment.php
 
-if(isset($_POST['updateSchedule'])){
-    $con = config::connect();
-    $course = $_POST['course'];
-    $cSection = $_POST['cSection'];
-    $platform = $_POST['platform'];
-    $comment = $_POST['comment'];
+// if(isset($_POST['schedule'])){
+//     $con = config::connect();
     
-    $currentUserID = $_SESSION['usersID'];
-    $currentAvailableID = $_SESSION['availableID'];
+//     $course = $_POST['course'];
+//     $cSection = $_POST['cSection'];
+//     $platform = $_POST['platform'];
+//     $comment = $_POST['comment'];
     
-    $query = $con->prepare("SELECT * FROM scheduled_appointment WHERE usersID=:usersID AND availableID=:availableID;");
-    $query->bindParam(":usersID", $currentUserID);
-    $query->bindParam(":availableID", $currentAvailableID);
-    $query->execute();
-    $result = $query->fetch(PDO::FETCH_ASSOC);
-    $usersID = $result['usersID'];
-    $availableID = $result['availableID'];
+//     $currentUsersID = $_SESSION['usersID'];
+//     $selectedAvailableID = $_SESSION['availableID'];
     
-    updateSchedule($con, $course, $cSection, $platform, $comment, $currentUserID, $currentAvailableID);
-    header("Location: ../dashboard.php"); 
-}
+//     scheduleappointment($con, $course, $cSection, $platform, $comment, $currentUsersID, $selectedAvailableID);
+//     header("Location: ../dashboard.php");  
+// }
+
+// Moved to updateappointment.php
+
+// if(isset($_POST['updateSchedule'])){
+//     $con = config::connect();
+//     $course = $_POST['course'];
+//     $cSection = $_POST['cSection'];
+//     $platform = $_POST['platform'];
+//     $comment = $_POST['comment'];
+    
+//     $currentUserID = $_SESSION['usersID'];
+//     $currentAvailableID = $_SESSION['availableID'];
+    
+//     $query = $con->prepare("SELECT * FROM scheduled_appointment WHERE usersID=:usersID AND availableID=:availableID;");
+//     $query->bindParam(":usersID", $currentUserID);
+//     $query->bindParam(":availableID", $currentAvailableID);
+//     $query->execute();
+//     $result = $query->fetch(PDO::FETCH_ASSOC);
+//     $usersID = $result['usersID'];
+//     $availableID = $result['availableID'];
+    
+//     updateSchedule($con, $course, $cSection, $platform, $comment, $currentUserID, $currentAvailableID);
+//     header("Location: ../dashboard.php"); 
+// }
 
 function insertDetails($con, $username, $password, $name, $email, $type){
     $query = $con->prepare("
@@ -169,19 +173,6 @@ function updateDetails($con, $usersID, $username, $password, $name, $email){
     return $query->execute();
 }
 
-function updateSchedule($con, $course, $cSection, $platform, $comment, $currentUserID, $currentAvailableID){
-    $query = $con->prepare("UPDATE scheduled_appointment SET course=:course, cSection=:cSection, platform=:platform, comment=:comment
-                            WHERE usersID=:usersID AND availableID=:availableID;");
-    $query->bindParam(":course", $course);
-    $query->bindParam(":cSection", $cSection);
-    $query->bindParam(":platform", $platform);
-    $query->bindParam(":comment", $comment);
-    $query->bindParam(":usersID", $currentUserID);
-    $query->bindParam(":availableID", $currentAvailableID);
-    $query->execute();
-    return;
-}
-
 function checkUserNameExist($con, $username){
     $query = $con->prepare("SELECT * FROM users WHERE usersUsername=:usersUsername;");
     $query->bindParam(":usersUsername", $username);
@@ -204,23 +195,25 @@ function checkEmailExist($con, $email){
     }
 }
 
-function scheduleappointment($con, $course, $cSection, $platform, $comment, $currentUsersID, $selectedAvailableID){
-    $query = $con->prepare("
-                            INSERT INTO scheduled_appointment 
-                                (course, cSection, platform, comment, usersID, availableID) 
-                            VALUES 
-                                (:course, :cSection, :platform, :comment, :usersID, :availableID);
+// Moved to scheduleappointment.php
+
+// function scheduleappointment($con, $course, $cSection, $platform, $comment, $currentUsersID, $selectedAvailableID){
+//     $query = $con->prepare("
+//                             INSERT INTO scheduled_appointment 
+//                                 (course, cSection, platform, comment, usersID, availableID) 
+//                             VALUES 
+//                                 (:course, :cSection, :platform, :comment, :usersID, :availableID);
                                 
-                            UPDATE available_appointment SET available=1 WHERE availableID=:availableID ;
-                          ");
-    $query->bindParam(":course",$course);
-    $query->bindParam(":cSection",$cSection);
-    $query->bindParam(":platform",$platform);
-    $query->bindParam(":comment",$comment);
-    $query->bindParam(":usersID",$currentUsersID);
-    $query->bindParam(":availableID",$selectedAvailableID);
-    $query->execute();
-    $query->closeCursor();
-    return $query;
-}
+//                             UPDATE available_appointment SET available=1 WHERE availableID=:availableID ;
+//                           ");
+//     $query->bindParam(":course",$course);
+//     $query->bindParam(":cSection",$cSection);
+//     $query->bindParam(":platform",$platform);
+//     $query->bindParam(":comment",$comment);
+//     $query->bindParam(":usersID",$currentUsersID);
+//     $query->bindParam(":availableID",$selectedAvailableID);
+//     $query->execute();
+//     $query->closeCursor();
+//     return $query;
+// }
 ?>
