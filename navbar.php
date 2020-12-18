@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-4">
+<div class="navbar navbar-expand-lg navbar-dark bg-dark py-4">
   <div class="container">
     <a class="navbar-brand" href="index.php">
       <?php include 'logo.php' ?>
@@ -63,4 +63,4 @@
       </ul>
     </div>
   </div>
-</nav>
+</div>

@@ -13,6 +13,7 @@ session_start();
   <title>Scheduling App</title>
   <meta name="viewport" content="width=device-width; initial-scale=1.0;">
   <link rel="stylesheet" type="text/css" href="/book_apps/ch05_guitar_shop/main.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -24,10 +25,5 @@ session_start();
 <!-- the body section -->
 
 <body>
-
-
-  <header>
-    <?php include 'navbar.php'; ?>
-  </header>
-
-  <main>
+  <?php include 'navbar.php'; ?>
+  <div>
