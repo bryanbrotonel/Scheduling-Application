@@ -10,7 +10,7 @@
             <h2> Welcome, <?php echo $results['usersName'] ?> </h2>
         </div>
         <div class="row justify-content-md-center">
-            <div class="col-lg-6">
+            <div class="col-lg-10">
                 <div class="bg-light rounded border p-5 mb-5">
                     <?php include isset($_SESSION['availableID']) ? "studentappointment.php" : "studenttable.php"; ?>
                 </div>
@@ -24,7 +24,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="dashModal">Modify Appointment</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="post" action="process/updateappointment.php">
@@ -42,7 +42,7 @@
                     <input type="hidden" value=<?php $_SESSION['usersID'] ?> name="usersID">
                     <input type="hidden" value=<?php $_SESSION['availableID'] ?> name="availableID">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <input class="btn btn-primary" type="submit" value="Update" name="updateSchedule">
                     </div>
                 </form>

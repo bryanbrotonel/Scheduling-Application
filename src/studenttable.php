@@ -1,7 +1,7 @@
 <h3>Schedule an Appointment</h3>
 <br>
 <div class="row d-flex justify-content-center">
-    <div class=" col-10">
+    <div class=" col-lg-10">
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -18,7 +18,7 @@
                         <td class="align-middle"><?php echo $available_appointment['availableStart'] ?></td>
                         <td class="align-middle"><?php echo $available_appointment['availableEnd'] ?></td>
                         <td class="align-middle">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#scheduleAppointment-<?php echo $available_appointment['availableID'] ?>">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#scheduleAppointment-<?php echo $available_appointment['availableID'] ?>">
                                 Select
                             </button>
                             <div class="modal fade" id="scheduleAppointment-<?php echo $available_appointment['availableID'] ?>" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
@@ -26,7 +26,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title">Book an Appointment</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <p>Date: <b><?php echo $available_appointment['availableDate'] ?> </b> </p>
@@ -42,7 +42,7 @@
                                                 </select><br><br>
                                                 <textarea name="comment" placeholder="Comment" required></textarea><br><br>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                     <input class="btn btn-primary" type="submit" value="Schedule" name="schedule">
                                                 </div>
                                             </form>
@@ -75,7 +75,7 @@
                 <td><?php echo $available_appointment['availableStart'] ?></td>
                 <td><?php echo $available_appointment['availableEnd'] ?></td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#scheduleAppointment-<?php echo $available_appointment['availableID'] ?>">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#scheduleAppointment-<?php echo $available_appointment['availableID'] ?>">
                         Select
                     </button>
                 </td>

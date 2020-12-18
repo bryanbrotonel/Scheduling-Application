@@ -24,7 +24,7 @@
         </a>
     </div>
     <div class="col-6 d-flex justify-content-center">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateAppointment">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateAppointment">
             Modify Appointment
         </button>
     </div>

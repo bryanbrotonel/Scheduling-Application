@@ -1,7 +1,7 @@
 <section class="py-5 container">
-    <div class="row justify-content-evenly py-lg-5">
+    <div class="row justify-content-center py-lg-5">
         <div class="col-lg-5 col-md-8 align-self-center">
-            <h1 class="featurette-heading mt-0 fw-bold text-primary">Always Be Present</h1>
+            <h1 class="featurette-heading mt-0 font-weight-bold text-danger">Always Be Present</h1>
             <p class="lead text-muted">Never miss a beat when it comes to your schoolwork. It's important to stay on track no matter how busy your life is.</p>
         </div>
         <div class="col-lg-5 col-md-4 text-center">
